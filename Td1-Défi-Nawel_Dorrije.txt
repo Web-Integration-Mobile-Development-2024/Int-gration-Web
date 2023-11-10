@@ -1,0 +1,120 @@
+-----------------------App.js
+import React from 'react';
+import './App.css';
+import 'font-awesome/css/font-awesome.min.css'
+import Pictogramme from './composants/Pictogramme';
+import Commentaire from './composants/Commentaire';
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      msg: 'Bonne découverte des composants React "Components!!!"'
+    };
+  }
+    // Fonction pour mettre à jour le message
+    updateMsg = (newMsg) => {
+      this.setState({ msg: newMsg });
+    }
+  render() {
+    return (
+    <div class="col-6 offset-3">
+    <div class="card">
+      <div class="card-block">
+        <div class="row">
+          <div class="col-2">
+            <img src="https://thomas-bart.com/wp-content/uploads/2017/03/developper-1680x1201.jpg"  class="rounded float-left" class="img-thumbnail" width="80" height="70" />
+          </div>
+          <div class="col-10 profile-row">
+            <div class="row">
+              <a href="#"><h1> Débuter avec React </h1></a>
+            </div>
+          </div>
+        </div>
+        <p>{this.state.msg}</p>
+    
+        <div>
+          <Pictogramme updateMsg={this.updateMsg}  />
+        </div>
+      </div>
+
+      <div class="card-footer text-muted">
+       <Commentaire />
+      </div>
+
+    </div>
+  </div>
+    );
+}
+}
+export default App;
+-------------------------------------Pictrogramme.js --------------------------------------------
+
+import React from "react";
+import Icone from "./Icone" ; 
+
+class Pictogramme extends React.Component {
+  
+  handleClick = () => {
+    // Appeler une fonction pour mettre à jour le message dans App
+    this.props.updateMsg('Premier défi réussi');
+  }
+  render() {
+  
+      return (
+    <div>
+          
+          <Icone />
+           
+          <hr />
+        <div>
+         <button type="button" className="btn no-outline btn-secondary" onClick={this.handleClick}>
+          <i className="fa fa-thumbs-o-up fa-4 align-middle" aria-hidden="true"></i>
+          &nbsp;
+          <span className="align-middle">J'aime</span>
+        </button>
+        </div>
+    </div>
+        )
+    }
+  }
+
+export default Pictogramme ;
+
+
+-----------------------------
+import React from "react";
+
+class Commentaire extends React.Component {
+    render (){
+        return (
+
+            <div>
+            <textarea class="form-control" placeholder="Tapez un commentaire..."></textarea>
+             <small>120 Restants</small>
+        </div>
+        )
+    }
+}
+
+export default Commentaire ;
+
+
+----------------------------------------------------------
+import React from "react";
+
+class Icone extends React.Component{
+    render (){
+        return (
+            <div>
+            
+            <span className="fa-stack fa-sm">
+             <i className="fa fa-circle fa-stack-2x blue-icon"></i>
+             <i className="fa fa-thumbs-up fa-stack-1x fa-inverse"></i>
+            </span>
+        </div>
+
+        )
+    }
+}
+export default Icone ;
